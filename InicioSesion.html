@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión - Becas para todos</title>
+    <style>
+      /* --- 1. Brand Color Palette --- */
+      :root {
+        --brand-dark-blue: #002a54;
+        --brand-light-blue: #4aa8ff;
+        --background-color: #f4f7fa;
+        --form-background: #ffffff;
+        --text-color: #333333;
+        --border-color: #dde3e8;
+        --error-color: #d93025;
+      }
+
+      /* --- 2. Global & Body Styles --- */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+
+      /* --- 3. Login Container --- */
+      .login-container {
+        width: 100%;
+        max-width: 400px;
+        padding: 2.5rem;
+        background-color: var(--form-background);
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        margin: 1rem;
+      }
+
+      /* --- 4. Header & Branding --- */
+      .login-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .login-header .logo-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 1rem;
+        background: linear-gradient(180deg, var(--brand-light-blue), #3399dd);
+        border-radius: 16px;
+        color: var(--brand-dark-blue);
+      }
+
+      /* Simple SVG placeholder for the logo's book & cap */
+      .logo-icon svg {
+        width: 40px;
+        height: 40px;
+        fill: var(--brand-dark-blue);
+      }
+
+      .brand-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--brand-dark-blue);
+        margin: 0;
+        line-height: 1.1;
+        text-transform: uppercase;
+      }
+
+      .brand-subtitle {
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: var(--brand-dark-blue);
+      }
+
+      /* Note: If using the exact logo image:
+        .login-header img {
+            max-width: 150px;
+            margin-bottom: 1rem;
+        }
+        */
+
+      /* --- 5. Form Elements --- */
+      .login-form {
+        width: 100%;
+      }
+
+      .input-group {
+        margin-bottom: 1.25rem;
+      }
+
+      .input-group label {
+        display: block;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+
+      .input-group input:focus {
+        outline: none;
+        border-color: var(--brand-light-blue);
+        box-shadow: 0 0 0 3px rgba(74, 168, 255, 0.3);
+      }
+
+      /* --- 6. Password Field Toggle --- */
+      .password-wrapper {
+        position: relative;
+      }
+
+      .password-toggle {
+        position: absolute;
+        top: 50%;
+        right: 0.75rem;
+        transform: translateY(calc(-50% + 10px)); /* Adjust for label */
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #888;
+        font-size: 1.2rem;
+        padding: 0.25rem;
+      }
+
+      .password-toggle:hover {
+        color: var(--text-color);
+      }
+
+      /* --- 7. Form Options (Remember & Forgot) --- */
+      .form-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .remember-me {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .remember-me input[type="checkbox"] {
+        accent-color: var(--brand-dark-blue);
+      }
+
+      .forgot-password-link {
+        color: var(--brand-dark-blue);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .forgot-password-link:hover {
+        text-decoration: underline;
+      }
+
+      /* --- 8. Submit Button --- */
+      .login-button {
+        width: 100%;
+        padding: 0.85rem;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+        background-color: var(--brand-dark-blue);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.1s;
+      }
+
+      .login-button:hover {
+        background-color: #004a8d; /* A slightly lighter dark blue */
+      }
+
+      .login-button:active {
+        transform: scale(0.98);
+      }
+
+      /* --- 9. Modal for Password Recovery --- */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: grid;
+        place-items: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 1000;
+      }
+
+      .modal-overlay.active {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .modal-content {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 420px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+      }
+
+      .modal-overlay.active .modal-content {
+        transform: scale(1);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .modal-header h2 {
+        color: var(--brand-dark-blue);
+        font-size: 1.3rem;
+      }
+
+      .close-modal {
+        background: none;
+        border: none;
+        font-size: 1.75rem;
+        font-weight: 300;
+        color: #888;
+        cursor: pointer;
+        line-height: 1;
+      }
+
+      .modal-content p {
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+      }
+
+      .recover-button {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+        background-color: var(--brand-dark-blue);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .recover-button:hover {
+        background-color: #004a8d;
+      }
+    </style>
+  </head>
+  <body class="bg-cover bg-center min-h-screen flex items-center justify-center" style="background-image: url('img/fondo.jpg');">
+    <div class="login-container">
+      <div class="login-header">
+        <div class="logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm-1 9l-9-4.92L11 2.5v9.58zM5.49 13.61l-2.02 1.1L12 18.27l8.51-4.64-2.02-1.1L12 15.58 5.49 13.61zM12 13.47l6.51-3.53L12 6.47 5.49 9.94 12 13.47z"
+            />
+          </svg>
+        </div>
+        <h1 class="brand-title">BECAS</h1>
+        <p class="brand-subtitle">para todos</p>
+      </div>
+
+      <form
+        class="login-form"
+        onsubmit="event.preventDefault(); window.location.href='index.html';"
+      >
+        <div class="input-group">
+          <label for="email">Correo Electrónico</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="tu@correo.com"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="password">Contraseña</label>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Tu contraseña"
+              required
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              id="password-toggle"
+              aria-label="Mostrar contraseña"
+            >
+              👁️
+            </button>
+          </div>
+        </div>
+
+        <div class="form-options">
+          <div class="remember-me">
+            <input type="checkbox" id="remember" name="remember" />
+            <label for="remember">Recuérdame</label>
+          </div>
+          <a href="#" class="forgot-password-link" id="forgot-password-link"
+            >¿Olvidaste tu contraseña?</a
+          >
+        </div>
+
+        <button type="submit" class="login-button">Iniciar Sesión</button>
+      </form>
+    </div>
+
+    <div class="modal-overlay" id="recovery-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Recuperar Contraseña</h2>
+          <button
+            class="close-modal"
+            id="close-modal"
+            aria-label="Cerrar modal"
+          >
+            &times;
+          </button>
+        </div>
+
+        <p>
+          Ingresa tu correo electrónico y te enviaremos un enlace para
+          restablecer tu contraseña.
+        </p>
+
+        <form
+          class="modal-form"
+          onsubmit="event.preventDefault(); alert('Recovery Email Sent!');"
+        >
+          <div class="input-group">
+            <label for="recovery-email">Correo Electrónico</label>
+            <input
+              type="email"
+              id="recovery-email"
+              name="recovery-email"
+              placeholder="tu@correo.com"
+              required
+            />
+          </div>
+          <button type="submit" class="recover-button">Enviar Enlace</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- Password Visibility Toggle ---
+        const passwordInput = document.getElementById("password");
+        const passwordToggle = document.getElementById("password-toggle");
+
+        passwordToggle.addEventListener("click", function () {
+          // Toggle the type attribute
+          const type =
+            passwordInput.getAttribute("type") === "password"
+              ? "text"
+              : "password";
+          passwordInput.setAttribute("type", type);
+
+          // Toggle the eye icon (simple text toggle)
+          this.textContent = type === "password" ? "👁️" : "🙈";
+          this.setAttribute(
+            "aria-label",
+            type === "password" ? "Mostrar contraseña" : "Ocultar contraseña"
+          );
+        });
+
+        // --- Modal Functionality ---
+        const modal = document.getElementById("recovery-modal");
+        const openModalLink = document.getElementById("forgot-password-link");
+        const closeModalButton = document.getElementById("close-modal");
+
+        // Open modal
+        openModalLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          modal.classList.add("active");
+        });
+
+        // Close modal via 'X' button
+        closeModalButton.addEventListener("click", function () {
+          modal.classList.remove("active");
+        });
+
+        // Close modal by clicking overlay
+        modal.addEventListener("click", function (e) {
+          if (e.target === this) {
+            // Only if clicking the overlay itself
+            modal.classList.remove("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

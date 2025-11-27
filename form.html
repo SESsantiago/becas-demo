@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Hace que el diseño se adapte a móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario de Solicitud de Beca</title>
+  
+  <!-- Enlace al archivo CSS externo -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Tarjeta principal que centra y da estilo al formulario -->
+  <div class="card">
+    <h1>Formulario de Solicitud de Beca</h1>
+
+    <!-- 
+      Formulario principal 
+      - novalidate: desactivamos validación nativa del navegador para usar la nuestra
+      - enctype: necesario para subir archivos
+    -->
+    <form id="scholarshipForm" enctype="multipart/form-data" novalidate>
+
+      <!-- ==================== INFORMACIÓN PERSONAL ==================== -->
+      <div class="section">
+        <h2>Información Personal</h2>
+
+        <label for="fullName">Nombre Completo *</label>
+        <input type="text" id="fullName" name="fullName" required />
+        <div class="error" id="nameError" role="alert" aria-live="polite"></div>
+
+        <label for="email">Correo Electrónico *</label>
+        <input type="email" id="email" name="email" required />
+        <div class="error" id="emailError" role="alert" aria-live="polite"></div>
+
+        <label for="phone">Número de Teléfono *</label>
+        <input type="tel" id="phone" name="phone" required />
+        <div class="error" id="phoneError" role="alert" aria-live="polite"></div>
+
+        <label for="dob">Fecha de Nacimiento *</label>
+        <input type="date" id="dob" name="dob" required />
+        <div class="error" id="dobError" role="alert" aria-live="polite"></div>
+
+        <label for="address">Dirección *</label>
+        <textarea id="address" name="address" required></textarea>
+        <div class="error" id="addressError" role="alert" aria-live="polite"></div>
+      </div>
+
+      <!-- ==================== INFORMACIÓN ACADÉMICA ==================== -->
+      <div class="section">
+        <h2>Información Académica</h2>
+
+        <label for="gpa">Promedio Actual (0.0 - 5.0) *</label>
+        <input type="number" id="gpa" name="gpa" step="0.01" min="0" max="5" required />
+        <div class="error" id="gpaError" role="alert" aria-live="polite"></div>
+
+        <label for="fieldStudy">Carrera o Campo de Estudio *</label>
+        <input type="text" id="fieldStudy" name="fieldStudy" required />
+        <div class="error" id="fieldStudyError" role="alert" aria-live="polite"></div>
+
+        <label for="semesters">Semestres Cursados *</label>
+        <select id="semesters" name="semesters" required>
+          <option value="">Seleccione...</option>
+          <option value="menos_6">Menos de 6</option>
+          <option value="7_10">Entre 7 y 10</option>
+          <option value="completa">Carrera completa sin título</option>
+        </select>
+        <div class="error" id="semestersError" role="alert" aria-live="polite"></div>
+
+        <label for="achievements">Logros o Premios Académicos (opcional)</label>
+        <textarea id="achievements" name="achievements"></textarea>
+      </div>
+
+      <!-- ==================== INFORMACIÓN FINANCIERA ==================== -->
+      <div class="section">
+        <h2>Información Financiera</h2>
+
+        <label for="income">Rango de Ingreso Familiar *</label>
+        <select id="income" name="income" required>
+          <option value="">Seleccione...</option>
+          <option value="menos_1_smlmv">Menos de 1 SMLMV</option>
+          <option value="1_2_smlmv">Entre 1 y 2 SMLMV</option>
+          <option value="2_4_smlmv">Entre 2 y 4 SMLMV</option>
+          <option value="mas_4_smlmv">Más de 4 SMLMV</option>
+        </select>
+        <div class="error" id="incomeError" role="alert" aria-live="polite"></div>
+
+        <label for="financialNeed">Descripción de la Necesidad Económica *</label>
+        <textarea id="financialNeed" name="financialNeed" required></textarea>
+        <div class="error" id="financialNeedError" role="alert" aria-live="polite"></div>
+      </div>
+
+      <!-- ==================== SELECCIÓN DE BECA ==================== -->
+      <div class="section">
+        <h2>Selección de la Beca</h2>
+
+        <label for="scholarship">Beca a la que desea postularse *</label>
+        <select id="scholarship" name="scholarship" required>
+          <option value="">Seleccione...</option>
+          <option value="excelencia">Beca de Excelencia Académica</option>
+          <option value="mujeres_stem">Beca Mujeres en STEM</option>
+          <option value="bajos_recursos">Beca para Estudiantes de Bajos Recursos</option>
+          <option value="internacionales">Beca para Estudiantes Internacionales</option>
+        </select>
+        <div class="error" id="scholarshipError" role="alert" aria-live="polite"></div>
+      </div>
+
+      <!-- ==================== DOCUMENTOS CON DRAG & DROP ==================== -->
+      <div class="section">
+        <h2>Documentos Soporte</h2>
+
+        <!-- Certificado de notas (obligatorio) -->
+        <div class="drop-zone" id="dropTranscript">
+          <label for="transcript">Certificado de Notas (PDF, JPG o DOCX – máx. 4 MB) *</label>
+          <div class="drop-area">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <p>Arrastra el archivo aquí o <span class="highlight">haz clic para seleccionar</span></p>
+            <input type="file" id="transcript" name="transcript" accept=".pdf,.jpg,.jpeg,.docx" required />
+          </div>
+          <div class="file-info" id="transcriptInfo"></div>
+          <div class="error" id="transcriptError" role="alert" aria-live="polite"></div>
+        </div>
+
+        <!-- Servicios públicos (obligatorio) -->
+        <div class="drop-zone" id="dropUtility">
+          <label for="utilityBill">Copia de Servicios Públicos (PDF, JPG o DOCX – máx. 4 MB) *</label>
+          <div class="drop-area">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <p>Arrastra el archivo aquí o <span class="highlight">haz clic para seleccionar</span></p>
+            <input type="file" id="utilityBill" name="utilityBill" accept=".pdf,.jpg,.jpeg,.docx" required />
+          </div>
+          <div class="file-info" id="utilityInfo"></div>
+          <div class="error" id="utilityBillError" role="alert" aria-live="polite"></div>
+        </div>
+
+        <!-- Certificados adicionales (opcional) -->
+        <div class="drop-zone">
+          <label for="certificates">Certificados Adicionales (Opcional – máx. 4 MB)</label>
+          <div class="drop-area">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <p>Arrastra archivos aquí o <span class="highlight">haz clic para seleccionar</span></p>
+            <input type="file" id="certificates" name="certificates" accept=".pdf,.jpg,.jpeg,.docx" />
+          </div>
+          <div class="file-info" id="certificatesInfo"></div>
+          <div class="error" id "certificatesError" role="alert" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- ==================== CONFIRMACIÓN DE ELEGIBILIDAD ==================== -->
+      <div class="section">
+        <h2>Confirmación de Elegibilidad *</h2>
+        <label>
+          <input type="checkbox" id="eligibility1" name="eligibility1" required />
+          Confirmo que cumplo con los requisitos académicos mínimos.
+        </label>
+        <label>
+          <input type="checkbox" id="eligibility2" name="eligibility2" required />
+          Confirmo que toda la información proporcionada es verídica.
+        </label>
+        <div class="error" id="eligibilityError" role="alert" aria-live="polite"></div>
+      </div>
+
+      <!-- Botón de envío -->
+      <button type="submit" id="submitBtn">Enviar Solicitud</button>
+
+      <!-- Mensaje de éxito (oculto hasta que se envíe) -->
+      <div id="successMessage" role="alert">
+        ¡Tu solicitud ha sido enviada con éxito! Te contactaremos pronto.
+      </div>
+    </form>
+  </div>
+
+  <!-- Enlace al archivo JavaScript externo -->
+  <script src="js/script.js"></script>
+</body>
+</html>

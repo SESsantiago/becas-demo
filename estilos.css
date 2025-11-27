@@ -1,0 +1,174 @@
+/* --- Estilos generales --- */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* --- Encabezado --- */
+.navbar {
+  background-color: #f8f9fa;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid #cce5ff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 60px;
+  height: auto;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.azul {
+  color: #0099ff;
+}
+
+.negro {
+  color: #000;
+}
+
+/* --- Navegación --- */
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navbar a.activo {
+  color: #0099ff;
+}
+
+/* --- Sección perfil --- */
+.perfil {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.perfil h2 {
+  text-align: center;
+  color: #0099ff;
+  font-size: 1.8rem;
+}
+
+.perfil-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.foto-perfil {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.foto-perfil img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #0099ff;
+  object-fit: cover;
+}
+
+.foto-perfil button {
+  background-color: #0099ff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.foto-perfil button:hover {
+  background-color: #0077cc;
+}
+
+/* --- Formulario --- */
+form {
+  width: 100%;
+}
+
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #0099ff;
+}
+
+form input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+form input:disabled {
+  background-color: #f4f4f4;
+}
+
+/* --- Botones --- */
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.botones button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#btnEditar {
+  background-color: #0099ff;
+  color: white;
+}
+
+#btnGuardar {
+  background-color: #28a745;
+  color: white;
+}
+
+#btnCancelar {
+  background-color: #dc3545;
+  color: white;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  background-color: #f8f9fa;
+  border-top: 1px solid #cce5ff;
+  color: #333;
+}

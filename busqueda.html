@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Búsqueda de Becas - Becas para la Vida</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="logo.svg" />
+</head>
+<body class="bg-gradient-to-b from-[#002A54] to-[#004080] min-h-screen flex flex-col text-white font-sans">
+
+  <!-- Encabezado -->
+  <header class="flex items-center justify-between px-10 py-5 bg-[#001E3C] shadow-md">
+     <a href="index.html" class="flex items-center space-x-3 group transition-transform duration-300 hover:scale-105">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#00BFFF"
+           class="w-10 h-10 group-hover:fill-white transition">
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm-1 9l-9-4.92L11 2.5v9.58zM5.49 13.61l-2.02 1.1L12 18.27l8.51-4.64-2.02-1.1L12 15.58 5.49 13.61zM12 13.47l6.51-3.53L12 6.47 5.49 9.94 12 13.47z"/>
+      </svg>
+      <h1 class="text-2xl font-semibold text-white group-hover:text-[#00BFFF] transition">
+        Becas para la Vida
+      </h1>
+    </a>
+
+    <!-- Botón del usuario -->
+    <a href="form.html"><button class="bg-[#00BFFF] hover:bg-white hover:text-[#002A54] text-white px-4 py-2 rounded-lg transition">
+      Formulario de Solicitud
+    </button></a>
+  </header>
+
+  <!-- Contenedor principal -->
+  <main class="flex flex-col items-center mt-10 px-6">
+    <!-- Barra de búsqueda -->
+    <div class="bg-white text-gray-700 rounded-2xl shadow-lg p-6 w-full max-w-3xl">
+      <h2 class="text-xl font-bold text-center text-[#002A54] mb-4">Busca tu beca ideal</h2>
+      <div class="flex flex-col md:flex-row md:space-x-4 space-y-3 md:space-y-0">
+        <input type="text" placeholder="Buscar por carrera o palabra clave" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button class="bg-[#002A54] text-white px-6 py-2 rounded-lg hover:bg-[#004080] transition">Buscar</button>
+      </div>
+
+      <!-- Filtros -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
+        <select class="border border-gray-300 rounded-lg px-4 py-2">
+           <option>Área de estudio</option>
+          <option>Ingeniería</option>
+          <option>Salud</option>
+          <option>Ciencias Sociales</option>
+          <option>Arte y Diseño</option>
+          <option>Educación</option>
+        </select>
+        <select class="border border-gray-300 rounded-lg px-4 py-2">
+          <option>Nivel académico</option>
+          <option>Pregrado</option>
+          <option>Posgrado</option>
+          <option>Doctorado</option>
+        </select>
+        <select class="border border-gray-300 rounded-lg px-4 py-2">
+          <option>Tipo de beca</option>
+          <option>Completa</option>
+          <option>Parcial</option>
+        </select>
+        <input type="date" class="border border-gray-300 rounded-lg px-4 py-2">
+      </div>
+    </div>
+
+    <!-- Resultados -->
+    <section class="mt-10 w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Tarjeta 1 -->
+      <div class="bg-white text-gray-800 rounded-2xl p-6 shadow-lg">
+        <h3 class="text-lg font-bold text-[#002A54] mb-2">Beca Talento Global</h3>
+        <p class="text-sm mb-3">Financiación completa para estudios de posgrado en el extranjero.</p>
+        <p class="text-sm mb-2"><strong>Institución:</strong> ICETEX</p>
+        <p class="text-sm mb-2"><strong>Fecha límite:</strong> 15 de diciembre de 2025</p>
+        <button onclick="openModal('modal1')" class="mt-4 bg-[#002A54] text-white w-full py-2 rounded-lg hover:bg-[#004080] transition">Ver detalles</button>
+      </div>
+
+      <!-- Tarjeta 2 -->
+      <div class="bg-white text-gray-800 rounded-2xl p-6 shadow-lg">
+        <h3 class="text-lg font-bold text-[#002A54] mb-2">Beca Innovadores</h3>
+        <p class="text-sm mb-3">Apoyo parcial para estudiantes destacados de ingeniería.</p>
+        <p class="text-sm mb-2"><strong>Institución:</strong> Fundación Colfuturo</p>
+        <p class="text-sm mb-2"><strong>Fecha límite:</strong> 30 de enero de 2026</p>
+        <button onclick="openModal('modal2')" class="mt-4 bg-[#002A54] text-white w-full py-2 rounded-lg hover:bg-[#004080] transition">Ver detalles</button>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div class="bg-white text-gray-800 rounded-2xl p-6 shadow-lg">
+        <h3 class="text-lg font-bold text-[#002A54] mb-2">Beca Emprendedores</h3>
+        <p class="text-sm mb-3">Dirigida a jóvenes que desarrollen proyectos sostenibles.</p>
+        <p class="text-sm mb-2"><strong>Institución:</strong> MinEducación</p>
+        <p class="text-sm mb-2"><strong>Fecha límite:</strong> 10 de febrero de 2026</p>
+        <button onclick="openModal('modal3')" class="mt-4 bg-[#002A54] text-white w-full py-2 rounded-lg hover:bg-[#004080] transition">Ver detalles</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modales -->
+  <div id="modal1" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white text-gray-800 rounded-2xl p-6 w-11/12 md:w-1/2 relative">
+      <button onclick="closeModal('modal1')" class="absolute top-3 right-3 text-gray-600 hover:text-red-600 text-2xl">&times;</button>
+      <h3 class="text-xl font-bold text-[#002A54] mb-3">Beca Talento Global</h3>
+      <p>Financiación completa para estudios de posgrado en el extranjero ofrecida por ICETEX.</p>
+      <ul class="mt-3 list-disc list-inside">
+        <li>Cubre matrícula, manutención y seguro médico.</li>
+        <li>Requiere promedio superior a 4.0.</li>
+        <li>Dirigida a estudiantes de todas las áreas.</li>
+      </ul>
+      <button onclick="closeModal('modal1')" class="mt-6 bg-[#002A54] text-white px-6 py-2 rounded-lg hover:bg-[#004080] transition">Cerrar</button>
+    </div>
+  </div>
+
+  <div id="modal2" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white text-gray-800 rounded-2xl p-6 w-11/12 md:w-1/2 relative">
+      <button onclick="closeModal('modal2')" class="absolute top-3 right-3 text-gray-600 hover:text-red-600 text-2xl">&times;</button>
+      <h3 class="text-xl font-bold text-[#002A54] mb-3">Beca Innovadores</h3>
+      <p>Apoyo parcial para estudiantes destacados en ingeniería, otorgado por Colfuturo.</p>
+      <ul class="mt-3 list-disc list-inside">
+        <li>Cubre el 50% de los costos de matrícula.</li>
+        <li>Incluye mentoría profesional.</li>
+        <li>Prioridad para proyectos tecnológicos sostenibles.</li>
+      </ul>
+      <button onclick="closeModal('modal2')" class="mt-6 bg-[#002A54] text-white px-6 py-2 rounded-lg hover:bg-[#004080] transition">Cerrar</button>
+    </div>
+  </div>
+
+  <div id="modal3" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white text-gray-800 rounded-2xl p-6 w-11/12 md:w-1/2 relative">
+      <button onclick="closeModal('modal3')" class="absolute top-3 right-3 text-gray-600 hover:text-red-600 text-2xl">&times;</button>
+      <h3 class="text-xl font-bold text-[#002A54] mb-3">Beca Emprendedores</h3>
+      <p>Iniciativa del Ministerio de Educación para jóvenes que desarrollen proyectos sostenibles.</p>
+      <ul class="mt-3 list-disc list-inside">
+        <li>Apoyo financiero del 70% del costo del programa.</li>
+        <li>Incluye asesoría empresarial.</li>
+        <li>Abierta para áreas de innovación y sostenibilidad.</li>
+      </ul>
+      <button onclick="closeModal('modal3')" class="mt-6 bg-[#002A54] text-white px-6 py-2 rounded-lg hover:bg-[#004080] transition">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById(id).classList.add('flex');
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+      document.getElementById(id).classList.remove('flex');
+    }
+  </script>
+
+</body>
+</html>
+
+
+
