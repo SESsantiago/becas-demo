@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Perfil</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-b from-blue-200 to-blue-300 min-h-screen">
+
+  <!-- HEADER -->
+  <header class="bg-[#003366] text-white py-4 shadow-lg">
+    <div class="container mx-auto flex justify-between items-center px-6">
+      <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index.html'">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff" class="h-12 w-12">
+          <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm-1 9l-9-4.92L11 2.5v9.58zM5.49 13.61l-2.02 1.1L12 18.27l8.51-4.64-2.02-1.1L12 15.58 5.49 13.61zM12 13.47l6.51-3.53L12 6.47 5.49 9.94 12 13.47z"/>
+        </svg>
+        <span class="text-xl font-semibold">Becas para Todos</span>
+      </div>
+
+      <nav class="flex gap-6 text-lg">
+        <a href="index.html" class="hover:text-gray-300">Inicio</a>
+        <a href="#" class="hover:text-gray-300 font-semibold underline">Perfil</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <section class="flex justify-center mt-10 px-4">
+    <div class="bg-white w-full max-w-3xl rounded-xl shadow-xl p-10">
+
+      <h2 class="text-3xl font-bold text-center text-[#003366] mb-6">Mi Perfil</h2>
+
+      <div class="flex flex-col items-center mb-8">
+        <div class="h-28 w-28 bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
+          Foto
+        </div>
+        <button class="mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          Cambiar Foto
+        </button>
+      </div>
+
+      <form class="space-y-5">
+
+        <div>
+          <label class="font-semibold text-[#003366]">Nombre Completo:</label>
+          <input type="text" class="w-full mt-1 p-3 border rounded-lg bg-gray-100" value="Camilo Blandón">
+        </div>
+
+        <div>
+          <label class="font-semibold text-[#003366]">Correo Electrónico:</label>
+          <input type="email" class="w-full mt-1 p-3 border rounded-lg bg-gray-100" value="camilo@correo.com">
+        </div>
+
+        <div>
+          <label class="font-semibold text-[#003366]">Teléfono:</label>
+          <input type="text" class="w-full mt-1 p-3 border rounded-lg bg-gray-100" value="3001234567">
+        </div>
+
+        <div>
+          <label class="font-semibold text-[#003366]">Dirección:</label>
+          <input type="text" class="w-full mt-1 p-3 border rounded-lg bg-gray-100" value="Medellín, Colombia">
+        </div>
+
+        <div class="flex justify-center pt-4">
+          <button class="px-6 py-3 bg-blue-600 text-white rounded-lg text-lg hover:bg-blue-700">
+            Guardar Cambios
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="text-center py-6 text-sm text-gray-700 mt-10">
+    © 2025 Becas para Todos | Desarrollado por equipo SJC .SAS
+  </footer>
+
+</body>
+</html>
